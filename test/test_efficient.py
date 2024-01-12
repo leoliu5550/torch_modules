@@ -9,11 +9,6 @@ import logging.config
 logging.config.fileConfig("logging.conf")
 logger = logging.getLogger("test")
 
-
-cfg = GLOBAL_CONFIG['efficientnet']
-cls = getattr(cfg['_pymodule'],'efficientnet')
-model = cls()
-
 class Test_efficientnet:
     x = torch.ones([2,3,640,640])
     cfg = GLOBAL_CONFIG['efficientnet']
