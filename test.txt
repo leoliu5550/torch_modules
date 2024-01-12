@@ -1,4 +1,0 @@
-{'efficientnet': 
-    {'_name': 'efficientnet', 
-    '_pymodule': <module 'backbone.efficientnet' from '/Users/leoliu/Documents/project/Rmodules/backbone/efficientnet.py'>}
-}

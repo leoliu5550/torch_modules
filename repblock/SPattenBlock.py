@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F 
-from .activation import get_activation
+from core import get_activation,ConvNormLayer
 from config import register
 import logging  
 import logging.config
@@ -11,23 +11,6 @@ logger = logging.getLogger("block.repblock")
 
 __all__ = ['SPattenBlock']
 
-
-class ConvNormLayer(nn.Module):
-    def __init__(self, ch_in, ch_out, kernel_size, stride, padding=None, bias=False, act=None):
-        super().__init__()
-        self.conv = nn.Conv2d(
-            ch_in, 
-            ch_out, 
-            kernel_size, 
-            stride, 
-            padding=(kernel_size-1)//2 if padding is None else padding, 
-            bias=bias)
-        self.norm = nn.BatchNorm2d(ch_out)
-        self.act = nn.Identity() if act is None else get_activation(act) 
-
-    def forward(self, x):
-        return self.act(self.norm(self.conv(x)))
-
 # Spatail Attention Module
 @register
 class SPattenBlock(nn.Module):
@@ -36,6 +19,7 @@ class SPattenBlock(nn.Module):
         self.ch_in = ch_in//2
         self.ch_out = ch_out//2
         self.conv1 = ConvNormLayer(self.ch_in, self.ch_out , 3, 1, padding=1, act=act)
+        self.conv2 = ConvNormLayer(self.ch_in, self.ch_out , 3, 1, padding=1, act=act)
         self.subconv2 =  ConvNormLayer(self.ch_in, self.ch_out , 3, 1, padding=1, act=act)
         self.subconv3 =  ConvNormLayer(self.ch_in, self.ch_out , 3, 1, padding=1, act=act)
         

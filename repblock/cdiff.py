@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F 
-from .activation import get_activation
+from core import get_activation
 import math
 from config import register
 import logging  
