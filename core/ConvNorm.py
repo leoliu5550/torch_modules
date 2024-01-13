@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-
+from .activation import get_activation
 
 class ConvNormLayer(nn.Module):
     def __init__(self, ch_in, ch_out, kernel_size, stride, padding=None, bias=False, act=None):

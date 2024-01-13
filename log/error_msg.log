@@ -1,6 +1,1 @@
-2024-01-13 01:35:17 [test][DEBUG] [test_conv/<module>] - 13  : <class 'repblock.cdiff.Conv2d_cdiff'>
-2024-01-13 01:35:19 [test][DEBUG] [test_conv/<module>] - 13  : <class 'repblock.cdiff.Conv2d_cdiff'>
-2024-01-13 01:35:23 [test][DEBUG] [test_conv/<module>] - 13  : <class 'repblock.cdiff.Conv2d_cdiff'>
-2024-01-13 01:35:27 [test][DEBUG] [test_conv/<module>] - 13  : <class 'repblock.cdiff.Conv2d_cdiff'>
-2024-01-13 01:35:36 [test][DEBUG] [test_conv/<module>] - 13  : <class 'repblock.cdiff.Conv2d_cdiff'>
-2024-01-13 01:35:37 [test][DEBUG] [test_conv/<module>] - 13  : <class 'repblock.cdiff.Conv2d_cdiff'>
+2024-01-13 21:12:53 [test][DEBUG] [test_backbone/test_mem] - 51  : Total model usage 0.008425511419773102 gb

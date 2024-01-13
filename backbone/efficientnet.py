@@ -72,5 +72,10 @@ class efficientnet(nn.Module):
                 "feat2":self.input_proj[1](feat2),
                 "feat3":self.input_proj[2](feat3)}
 
+        # [self.input_proj[0](feat1),
+        # self.input_proj[1](feat2),
+        # self.input_proj[2](feat3)]
+    
+
         # for proj in self.input_proj:
         #     nn.init.normal_(proj.weight)

@@ -6,11 +6,12 @@ logger = logging.getLogger("test")
 from backbone import *
 from repblock import *
 from config import GLOBAL_CONFIG
-from torchsummary import summary
-
-cfg = GLOBAL_CONFIG['Conv2d_cdiff']
-cls = getattr(cfg['_pymodule'],'Conv2d_cdiff')
-
+from torchsummary import summary,kk
+cfg = GLOBAL_CONFIG['efficientnet']
+cls = getattr(cfg['_pymodule'],'efficientnet')
 model = cls()
+    
 
-summary(model, input_size=(3, 640, 640))
+
+a = summary(model, input_size=(3, 640, 640))
+print(a['total_size']<1500)
