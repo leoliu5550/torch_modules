@@ -53,4 +53,19 @@ class Test_yolo:
         
 class Test_inception:
     x = torch.ones([2,3,640,640])
+    cfg = GLOBAL_CONFIG['inception']
+    model = getattr(cfg['_pymodule'],'inception')()
     
+    def test_outputShape(self):
+        out = self.model(self.x)
+        assert out['feat1'].shape == torch.Size([2,256,80,80])
+        assert out['feat2'].shape == torch.Size([2,256,40,40])
+        assert out['feat3'].shape == torch.Size([2,256,20,20])
+        
+    def test_outputscale(self):
+        x = torch.ones([2,3,320,320])
+        out = self.model(x)
+        assert out['feat1'].shape == torch.Size([2,256,40,40])
+        assert out['feat2'].shape == torch.Size([2,256,20,20])
+        assert out['feat3'].shape == torch.Size([2,256,10,10])
+        
