@@ -24,7 +24,7 @@ class deform_conv3(nn.Module):
             stride = stride ,
             padding = (kernel_size-1)//2 if padding is None else padding, 
         )
-        self.act = nn.Identity() if act is None else get_activation(act) 
+        
         self.conv_offset = nn.Conv2d(
             in_channels = ch_in,
             out_channels = 2*kernel_size*kernel_size,
@@ -33,7 +33,8 @@ class deform_conv3(nn.Module):
             padding = (kernel_size-1)//2 if padding is None else padding, 
         )
         nn.init.trunc_normal_(self.conv_offset.weight)
-
+        self.act = nn.Identity() if act is None else get_activation(act) 
+        
     def forward(self, x):
         
         offset = self.conv_offset(x)
