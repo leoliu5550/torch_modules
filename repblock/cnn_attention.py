@@ -2,7 +2,7 @@ from config import register
 import torch
 import torch.nn as nn
 import torch.nn.functional as F 
-from core import get_activation,ConvNormLayer
+from core import get_activation
 
 # region 
 import logging  
@@ -10,7 +10,12 @@ import logging.config
 logging.config.fileConfig("logging.conf")
 logger = logging.getLogger("block.cbam")
 # endregion
-__all__=['spatial_soft_attention','spatial_attention','channel_attention','cbam']
+__all__=[
+    'spatial_soft_attention',
+    'spatial_attention',
+    'channel_attention',
+    'cbam'
+    ]
 
 # spatial attention
 # Parameter-Free Spatial Attention Network for Person Re-Identification
@@ -20,7 +25,7 @@ class spatial_soft_attention(nn.Module):
     def __init__(self):
         super().__init__()
         self.flat = nn.Flatten()
-        self.soft = nn.Softmax()
+        self.soft = nn.Softmax(dim=1)
     def forward(self,x):
         b,_,w,h = x.shape
         sum_x = torch.sum(x,1,keepdim=True) # [b,c,w,h] -> [b,1,w,h]
@@ -128,3 +133,5 @@ class cbam(nn.Module):
         x = self.sp_att(x)
         
         return x
+    
+    

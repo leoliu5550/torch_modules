@@ -1,5 +1,6 @@
 import torch
 import torch.nn
+import pytest
 import sys
 sys.path.append(".")
 from repblock import *
@@ -30,9 +31,7 @@ class Test_repblock:
         )
         out = model(self.x)
         assert out.shape == torch.Size([2,10,640,640])
-
-class TestConvattblock:
-    cfg = GLOBAL_CONFIG
+        
     def test_spatial_soft_attention(self):
         cls = getattr(self.cfg['spatial_soft_attention']['_pymodule'],'spatial_soft_attention')
         model = cls()
@@ -65,3 +64,14 @@ class TestConvattblock:
         x = torch.ones([4,10,8,8])
         out = model(x)
         assert out.shape == torch.Size([4,10,8,8])
+        
+    # @pytest.mark.skip("g")
+    def test_SEnetblock(self):
+        cls = getattr(self.cfg['SEnet_block']['_pymodule'],'SEnet_block')
+        model = cls(
+            ch_in = 3,
+            ratio =4
+        )
+        x= torch.ones([3,3,5,5])
+        out = model(x)
+        assert out.shape == x.shape
